@@ -11,7 +11,7 @@ galleryEl.insertAdjacentHTML('beforeend', galleryMarkup);
 
 galleryEl.addEventListener('click', onGalleryElClick);
 
-var SimpleLightBox = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
     captionDelay: 250,
 });
 
