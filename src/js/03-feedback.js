@@ -1,4 +1,4 @@
-import throttle from "lodash.throttle";
+import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
 const email = document.querySelector('.feedback-form input');
@@ -15,22 +15,30 @@ populateFormFields();
 form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(e) {
-    formData[e.target.name] = e.target.value;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    
+    formData.email = email.value;
+    formData.message = message.value;
+    
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function onFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
+  if (email.value && message.value) {
     console.log(formData);
-    e.target.reset();
+    e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
-};
+  } else {
+      alert('Not all fields are filled')
+      }
+}
 
 function populateFormFields() {
     const localData = JSON.parse(localStorage.getItem(STORAGE_KEY));
     
-    if (localData) {
-        email.value = localData.email;
-        message.value = localData.message;
-    }
-};
+  if (localData) {
+      
+    email.value = localData.email || "";
+    message.value = localData.message || "";
+  }
+}
