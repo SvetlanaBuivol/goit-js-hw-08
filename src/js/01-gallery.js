@@ -8,7 +8,6 @@ const galleryEl = document.querySelector('.gallery');
 const galleryMarkup = createGalleryItemMarkup(galleryItems);
 galleryEl.insertAdjacentHTML('beforeend', galleryMarkup);
 
-galleryEl.addEventListener('click', onGalleryElClick);
 
 new SimpleLightbox('.gallery a', {
     captionDelay: 250,
@@ -31,10 +30,4 @@ function createGalleryItemMarkup (galleryItems) {
     }).join('');
 };
 
-function onGalleryElClick(e) {
-    e.preventDefault();
-    
-    if (!e.target.classList.contains('gallery__image')) {
-        return;
-    }
-};
+
